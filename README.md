@@ -49,7 +49,7 @@
   
   `It is a regularization strategy, the smaller the value, the stronger (more conservative or robust) the regularization is.`
   
-  range: [0, 1], 
+  range: [0, 1]
   
   typical range: [0.01, 0.2] as in [here](https://www.analyticsvidhya.com/blog/2016/03/complete-guide-parameter-tuning-xgboost-with-codes-python/) 
   
@@ -64,4 +64,28 @@
   Makes the algorithm conservative. The values can vary depending on the loss function and should be tuned.
   
   `The larger gamma is, the more conservative the algorithm will be.`
+  
+  range: [0,∞]
+  
+  __max_depth__ [default=6]
+  
+  Maximum depth of a tree. Increasing this value will make the model more complex and more likely to overfit. 0 indicates no limit. Note that limit is required when grow_policy is set of depthwise.
+  
+  This is the same as the `size of the tree` parameters *__J__* in GBM (see ESLII, 10.11 Right-Sized Trees for Boosting).
+  
+  range: [0,∞]
+  
+  Although in many applications J = 2 will be insufficient, it is unlikely that J > 10 will be required. 
+  
+  Experience so far indicates that `4 < J < 8` works well in the context of boosting, with results being fairly insensitive to particular choices in this range. 
+
+  One can fine-tune the value for J by trying several different values and choosing the one that produces the lowest risk on a validation sample. However, this seldom provides significant improvement over using J = 6.
+  
+  textbook suggestion: [4, 8]
+  
+  typical range: [3, 10] as in [here](https://www.analyticsvidhya.com/blog/2016/03/complete-guide-parameter-tuning-xgboost-with-codes-python/) 
+  
+  
+  __min_child_weight__ [default=1]
+  
   
