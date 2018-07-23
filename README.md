@@ -14,3 +14,8 @@
   
   __Command line parameters__ relate to behavior of CLI version of XGBoost.
   `Command line related, rarely used in my case`
+  
+  
+# General Parameters
+  booster [default= gbtree ]
+  Which booster to use. Can be gbtree, gblinear or dart; gbtree and dart use tree based models while gblinear uses linear functions.
