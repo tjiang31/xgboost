@@ -89,7 +89,7 @@
   
   Minimum sum of instance weight (hessian) needed in a child. If the tree partition step results in a leaf node with the sum of instance weight less than min_child_weight, then the building process will give up further partitioning. In linear regression task, this simply corresponds to minimum number of instances needed to be in each node. The larger min_child_weight is, the more conservative the algorithm will be.
 
-  `Hessian is the H term in objective function of XGBoost, if H is too small,  the obj will be `
+  `Hessian is the H term in objective function of XGBoost; if H is too small,  the obj will be highly determined by the small H term, because H is on the denom side of the obj. So overfitting will happen...`
 
   range: [0,∞]
   
@@ -101,5 +101,17 @@
 
   Too high values can lead to under-fitting hence, it should be tuned using CV.
   
+  
+  __max_delta_step__ [default=0]
+  
+  Maximum delta step we allow each leaf output to be. If the value is set to 0, it means there is no constraint. If it is set to a positive value, it can help making the update step more conservative. Usually this parameter is not needed, but it might help in logistic regression when class is extremely imbalanced. Set it to value of 1-10 might help control the update.
+  
+  range: [0,∞]
+  
+  For common cases such as ads clickthrough log, the dataset is extremely imbalanced. This can affect the training of XGBoost model. If you care about predicting the right probability, and in such case, you cannot re-balance the dataset. So set parameter __max_delta_step__ to a finite number (say 1) to help convergence.
+  
+  This is basically to add a contraint to detla = y(t) - y(t-1), if the delta is too big, it will add too much weight to the new learner (tree), and bias the result. So if we add a cap to delta, we can make the model more stable.
+  
+  This parameter is generally not used.
   
   
