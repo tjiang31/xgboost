@@ -71,7 +71,7 @@
   
   Maximum depth of a tree. Increasing this value will make the model more complex and more likely to overfit. 0 indicates no limit. Note that limit is required when grow_policy is set of depthwise.
   
-  This is the same as the `size of the tree` parameters *__J__* in GBM (see ESLII, 10.11 Right-Sized Trees for Boosting).
+  `This is the same as the _size of the tree_ parameters *__J__* in GBM (see ESLII, 10.11 Right-Sized Trees for Boosting).`
   
   range: [0,∞]
 
@@ -110,8 +110,31 @@
   
   For common cases such as ads clickthrough log, the dataset is extremely imbalanced. This can affect the training of XGBoost model. If you care about predicting the right probability, and in such case, you cannot re-balance the dataset. So set parameter __max_delta_step__ to a finite number (say 1) to help convergence.
   
-  This is basically to add a contraint to detla = y(t) - y(t-1), if the delta is too big, it will add too much weight to the new learner (tree), and bias the result. So if we add a cap to delta, we can make the model more stable.
+  `This is basically to add a CAP to detla = y(t) - y(t-1), otherwise if the delta is too big, it will add too much weight to the new learner (tree), and bias the result. So if we add a cap to delta, we can make the model more robust (conservative).`
   
   This parameter is generally not used.
+  
+  
+  __subsample__ [default=1]
+
+  Subsample ratio of the training instances. Setting it to 0.5 means that XGBoost would randomly sample half of the training data prior to growing trees. and this will prevent overfitting. Subsampling will occur once in every boosting iteration.
+  
+  This is a `boostrapping without replacement` method, and is the same as the GBM subsampling (see ESLII, 10.12.2 Subsampling). It denotes the fraction of observations to be randomly samples for each tree.
+  
+  range: (0,1]
+  
+  typical range: [0.5, 1]
+  
+  
+  __colsample_bytree__ [default=1]
+  
+  Subsample ratio of columns when constructing each tree. Subsampling will occur once in every boosting iteration.
+  
+  Similar to max_features in GBM. It denotes the fraction of columns to be randomly samples for each tree.
+
+  range: (0,1]
+  
+  Typical range: [0.5, 1]
+  
   
   
