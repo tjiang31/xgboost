@@ -155,12 +155,12 @@
   
   L2 regularization term on weights. Increasing this value will make model more conservative.
 
-  Feel like not many people use this.
 
   __alpha__ [default=0, alias: reg_alpha]
    
   L1 regularization term on weights. Increasing this value will make model more conservative.
+
+  These two regularization terms have different effects on the weights; L2 regularization (controlled by the lambda term) encourages the weights to be small, whereas L1 regularization (controlled by the alpha term) encourages sparsity – so it encourages weights to go to 0. This is helpful in models such as `logistic regression`, where you want some feature selection, but in `decision trees` we’ve already selected our features, so zeroing their weights isn’t super helpful. For this reason,setting a high lambda value and a low (or 0) alpha value to be the most effective when regularizing.
   
-  Feel like not many people use this.
-  
+  In general, set __alpha__ = 0, and only tune __lambda__ in tree model.
   
