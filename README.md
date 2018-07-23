@@ -25,7 +25,7 @@
   
   _gbtree_ is most popular choice.
   
-  _dart_[https://xgboost.readthedocs.io/en/latest/tutorials/dart.html#dart-booster] is _gbtree_ with 'dropout'.
+  [_dart_](https://xgboost.readthedocs.io/en/latest/tutorials/dart.html#dart-booster) is _gbtree_ with 'dropout'.
   
 
   __silent__ [default=0]
