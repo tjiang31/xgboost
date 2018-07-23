@@ -43,7 +43,7 @@
   
   
 # Parameters for Tree Booster
-  *____ &\nu;
+  *____ &nu;
   
   
   
