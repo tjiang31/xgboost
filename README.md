@@ -42,7 +42,8 @@
   __num_feature__ `don't worry`
   
   
-# Booster Parameters  
+# Parameters for Tree Booster
+  *____ \nu
   
   
   
