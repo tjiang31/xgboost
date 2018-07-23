@@ -43,9 +43,17 @@
   
   
 # Parameters for Tree Booster
-  *____ &nu;
+  *__eta__ [default=0.3, alias: learning_rate] 
   
+  This is the shrinkage parameter &nu; as in GBM (see ESLII, 10.12.1 Shrinkage);
   
+  It is a regularization strategy, the smaller the value, the stronger (more conservative or robust) the regularization is.
+  
+  range: [0, 1], 
+  
+  typical range: [0.01, 0.2] as in [here](https://www.analyticsvidhya.com/blog/2016/03/complete-guide-parameter-tuning-xgboost-with-codes-python/) 
+  
+  textbook suggestion: &nu; < 0.1 (see ESLII, 10.12.1 Shrinkage);
   
   
   
