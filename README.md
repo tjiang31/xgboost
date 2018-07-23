@@ -65,7 +65,11 @@
   
   `The larger gamma is, the more conservative the algorithm will be.`
   
+  see [details](https://medium.com/data-design/xgboost-hi-im-gamma-what-can-i-do-for-you-and-the-tuning-of-regularization-a42ea17e6ab6)
+  
   range: [0,∞]
+  
+  typical range [0, 20]
   
   __max_depth__ [default=6]
   
@@ -136,5 +140,27 @@
   
   Typical range: [0.5, 1]
   
+  
+  __colsample_bylevel__ [default=1]
+  Subsample ratio of columns for each split, in each level. Subsampling will occur each time a new split is made. `This paramter has no effect when tree_method is set to hist.`
+  
+  range: (0,1]
+  
+  Note that __subsample__ + __colsample_bylevel__ = randomForest, and the minor difference is __subsample__ with replacement.
+  
+  Rarely used because subsample and colsample_bytree will do the job for you.
+  
+  
+  __lambda__ [default=1, alias: reg_lambda]
+  
+  L2 regularization term on weights. Increasing this value will make model more conservative.
+
+  Feel like not many people use this.
+
+  __alpha__ [default=0, alias: reg_alpha]
+   
+  L1 regularization term on weights. Increasing this value will make model more conservative.
+  
+  Feel like not many people use this.
   
   
