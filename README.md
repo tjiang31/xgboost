@@ -17,6 +17,34 @@
   
   
 # General Parameters
-  booster [default= gbtree ]
+  __booster__ [default= gbtree ]
   
-  Which booster to use. Can be gbtree, gblinear or dart; gbtree and dart use tree based models while gblinear uses linear functions.
+  Which booster to use. Can be _gbtree_, _gblinear_ or _dart_; 
+  
+  _gbtree_ and _dart_ use `tree based models` while _gblinear_ uses `linear functions`.
+  
+  _gbtree_ is most popular choice.
+  
+  _dart_[https://xgboost.readthedocs.io/en/latest/tutorials/dart.html#dart-booster] is _gbtree_ with 'dropout'.
+  
+
+  __silent__ [default=0]
+  
+  0 means printing running messages, 1 means silent mode. `usually set to 1`
+  
+  
+  __nthread__ [default to maximum number of threads available if not set]
+  
+  Number of parallel threads used to run XGBoost.
+  
+  __num_pbuffer__  `don't worry`
+  
+  __num_feature__ `don't worry`
+  
+  
+# Booster Parameters  
+  
+  
+  
+  
+  
