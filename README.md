@@ -18,4 +18,5 @@
   
 # General Parameters
   booster [default= gbtree ]
+  
   Which booster to use. Can be gbtree, gblinear or dart; gbtree and dart use tree based models while gblinear uses linear functions.
