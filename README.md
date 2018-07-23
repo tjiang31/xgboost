@@ -45,15 +45,23 @@
 # Parameters for Tree Booster
   *__eta__ [default=0.3, alias: learning_rate] 
   
-  This is the shrinkage parameter &nu; as in GBM (see ESLII, 10.12.1 Shrinkage);
+    This is the shrinkage parameter &nu; as in GBM (see ESLII, 10.12.1 Shrinkage);
   
-  It is a regularization strategy, the smaller the value, the stronger (more conservative or robust) the regularization is.
+    `It is a regularization strategy, the smaller the value, the stronger (more conservative or robust) the regularization is.`
   
-  range: [0, 1], 
+    range: [0, 1], 
   
-  typical range: [0.01, 0.2] as in [here](https://www.analyticsvidhya.com/blog/2016/03/complete-guide-parameter-tuning-xgboost-with-codes-python/) 
+    typical range: [0.01, 0.2] as in [here](https://www.analyticsvidhya.com/blog/2016/03/complete-guide-parameter-tuning-xgboost-with-codes-python/) 
   
-  textbook suggestion: &nu; < 0.1 (see ESLII, 10.12.1 Shrinkage);
+    textbook suggestion: &nu; < 0.1 (see ESLII, 10.12.1 Shrinkage);
+    
+  *__gamma__ [default=0, alias: min_split_loss]
   
+    Minimum loss reduction required to make a further partition on a leaf node of the tree. 
+    
+    A node is split only when the resulting split gives a positive reduction in the loss function. Gamma specifies the minimum loss reduction required to make a split.
+
+    Makes the algorithm conservative. The values can vary depending on the loss function and should be tuned.
   
+    `The larger gamma is, the more conservative the algorithm will be.`
   
