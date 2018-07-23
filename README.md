@@ -87,4 +87,19 @@
   
   __min_child_weight__ [default=1]
   
+  Minimum sum of instance weight (hessian) needed in a child. If the tree partition step results in a leaf node with the sum of instance weight less than min_child_weight, then the building process will give up further partitioning. In linear regression task, this simply corresponds to minimum number of instances needed to be in each node. The larger min_child_weight is, the more conservative the algorithm will be.
+
+  `Hessian is the H term in objective function of XGBoost, if H is too small,  the obj will be `
+
+  range: [0,∞]
+  
+  Defines the minimum sum of weights of all observations required in a child.
+
+  This is similar to min_child_leaf in GBM but not exactly. This refers to min “sum of weights” of observations while GBM has min “number of observations”.
+  
+  Used to control over-fitting. Higher values prevent a model from learning relations which might be highly specific to the particular sample selected for a tree.
+
+  Too high values can lead to under-fitting hence, it should be tuned using CV.
+  
+  
   
