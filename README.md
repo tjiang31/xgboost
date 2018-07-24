@@ -190,4 +190,4 @@
 
   gpu_hist: GPU implementation of hist algorithm.
   
-  
+  ·should set to 'auto'·  
