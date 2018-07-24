@@ -214,7 +214,7 @@
 
   --Use AUC for evaluation.
     
-  
+  range : [1, ∞]
   __updater__ [default= grow_colmaker,prune]
   
   A comma separated string defining the sequence of tree updaters to run, providing a modular way to construct and to modify the trees. This is an advanced parameter that is usually set automatically, depending on some other parameters. However, it could be also set explicitly by a user. The following updater plugins exist:
@@ -236,3 +236,99 @@
   `prune`: prunes the splits where loss < min_split_loss (or gamma).
 
   In a distributed setting, the implicit updater sequence value would be adjusted to `grow_histmaker,prune`.
+
+  _This is the internal parameters, in general, no touch on this updater_
+  
+  
+  __refresh_leaf__ [default=1]
+  
+  Only if `refresh` is used in updater. 
+  
+  When this flag is 1, tree leafs as well as tree nodes’ stats are updated. When it is 0, only node stats are updated.
+  
+  __process_type__ [default= default]
+
+  A type of boosting process to run.
+
+  Choices: default, update
+   
+   `default`: The normal boosting process which creates new trees.
+
+   `update`: Starts from an existing model and only updates its trees. In each boosting iteration, a tree from the initial model is taken, a specified sequence of updater plugins is run for that tree, and a modified tree is added to the new model. The new model would have either the same or smaller number of trees, depending on the number of boosting iteratons performed. Currently, the following built-in updater plugins could be meaningfully used with this process type: `refresh, prune`. With process_type=update, one cannot use updater plugins that create new trees.
+   
+   If your choice is `update`, then it will only go with `updater = 'refresh, prune'`.
+   
+   In general, set this to `default`.
+   
+   __grow_policy__ [default= depthwise]
+
+   Controls a way new nodes are added to the tree.
+
+   Currently supported only if `tree_method = 'hist'`.
+
+   Choices: depthwise, lossguide
+   
+   `depthwise`: split at nodes closest to the root.
+
+   `lossguide`: split at nodes with highest loss change.
+   
+   __max_leaves__ [default=0]
+
+   Maximum number of nodes to be added. 
+   
+   Only relevant when `grow_policy='lossguide'` and `tree_method = 'hist'` is set.
+   
+   __max_bin__ [default=256]
+
+   Only used if `tree_method = 'hist'`.
+
+   Maximum number of discrete bins to bucket continuous features.
+
+   Increasing this number improves the optimality of splits at the cost of higher computation time.
+   
+   
+   __predictor__ [default=``cpu_predictor``]
+
+   The type of predictor algorithm to use. Provides the same results but allows the use of GPU or CPU.
+
+   `cpu_predictor`: Multicore CPU prediction algorithm.
+
+   `gpu_predictor`: Prediction using GPU. Default when __tree_method__ is `gpu_exact` or `gpu_hist`.
+   
+ #Additional parameters for Dart Booster (booster='dart')
+ 
+ #Parameters for Linear Booster (booster='gblinear')
+ 
+ #Parameters for Tweedie Regression (objective='reg:tweedie')
+ 
+ #Learning Task Parameters
+ 
+ Specify the learning task and the corresponding learning objective. The objective options are below:
+
+ objective [default=reg:linear]
+
+  `reg:linear`: linear regression
+
+  reg:logistic: logistic regression
+
+  binary:logistic: logistic regression for binary classification, output probability
+
+  binary:logitraw: logistic regression for binary classification, output score before logistic transformation
+
+  gpu:reg:linear, gpu:reg:logistic, gpu:binary:logistic, gpu:binary:logitraw: versions of the corresponding objective functions evaluated on the GPU; note that like the GPU histogram algorithm, they can only be used when the entire training session uses the same dataset
+
+  count:poisson –poisson regression for count data, output mean of poisson distribution
+   
+    max_delta_step is set to 0.7 by default in poisson regression (used to safeguard optimization)
+
+  survival:cox: Cox regression for right censored survival time data (negative values are considered right censored). Note that predictions are returned on the hazard ratio scale (i.e., as HR = exp(marginal_prediction) in the proportional hazard function h(t) = h0(t) * HR).
+  
+  multi:softmax: set XGBoost to do multiclass classification using the softmax objective, you also need to set num_class(number of classes)
+
+  multi:softprob: same as softmax, but output a vector of ndata * nclass, which can be further reshaped to ndata * nclass matrix. The result contains predicted probability of each data point belonging to each class.
+
+  rank:pairwise: set XGBoost to do ranking task by minimizing the pairwise loss.
+
+  reg:gamma: gamma regression with log-link. Output is a mean of gamma distribution. It might be useful, e.g., for modeling insurance claims severity, or for any outcome that might be gamma-distributed.
+
+  reg:tweedie: Tweedie regression with log-link. It might be useful, e.g., for modeling total loss in insurance, or for any outcome that might be Tweedie-distributed.
