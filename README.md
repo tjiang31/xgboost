@@ -210,8 +210,8 @@
   
   If you care only about the overall performance metric (AUC) of your prediction:
   
-    Balance the positive and negative weights via __scale_pos_weight__.
+   Balance the positive and negative weights via **scale_pos_weight**.
 
-    Use AUC for evaluation.
+   Use AUC for evaluation.
     
   
