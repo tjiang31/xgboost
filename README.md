@@ -307,31 +307,31 @@
 
  __objective__ [default=reg:linear]
 
-  `reg:linear`: linear regression
+ `reg:linear`: linear regression
 
-  `reg:logistic`: logistic regression
+ `reg:logistic`: logistic regression
 
-  `binary:logistic`: logistic regression for binary classification, output probability
+ `binary:logistic`: logistic regression for binary classification, output probability
 
-  `binary:logitraw`: logistic regression for binary classification, output score before logistic transformation
+ `binary:logitraw`: logistic regression for binary classification, output score before logistic transformation
 
-  `gpu:reg:linear`, `gpu:reg:logistic`, `gpu:binary:logistic`, `gpu:binary:logitraw`: versions of the corresponding objective functions evaluated on the GPU; note that like the GPU histogram algorithm, they can only be used when the entire training session uses the same dataset
+ `gpu:reg:linear`, `gpu:reg:logistic`, `gpu:binary:logistic`, `gpu:binary:logitraw`: versions of the corresponding objective functions evaluated on the GPU; note that like the GPU histogram algorithm, they can only be used when the entire training session uses the same dataset
 
-  `count:poisson` –poisson regression for count data, output mean of poisson distribution
+ `count:poisson` –poisson regression for count data, output mean of poisson distribution
    
     max_delta_step is set to 0.7 by default in poisson regression (used to safeguard optimization)
 
-  `survival:cox`: Cox regression for right censored survival time data (negative values are considered right censored). Note that predictions are returned on the hazard ratio scale (i.e., as HR = exp(marginal_prediction) in the proportional hazard function h(t) = h0(t) * HR).
+ `survival:cox`: Cox regression for right censored survival time data (negative values are considered right censored). Note that predictions are returned on the hazard ratio scale (i.e., as HR = exp(marginal_prediction) in the proportional hazard function h(t) = h0(t) * HR).
   
-  `multi:softmax`: set XGBoost to do multiclass classification using the softmax objective, you also need to set num_class(number of classes)
+ `multi:softmax`: set XGBoost to do multiclass classification using the softmax objective, you also need to set num_class(number of classes)
 
-  `multi:softprob`: same as softmax, but output a vector of ndata * nclass, which can be further reshaped to ndata * nclass matrix. The result contains predicted probability of each data point belonging to each class.
+ `multi:softprob`: same as softmax, but output a vector of ndata * nclass, which can be further reshaped to ndata * nclass matrix. The result contains predicted probability of each data point belonging to each class.
 
-  `rank:pairwise`: set XGBoost to do ranking task by minimizing the pairwise loss.
+ `rank:pairwise`: set XGBoost to do ranking task by minimizing the pairwise loss.
 
-  `reg:gamma`: gamma regression with log-link. Output is a mean of gamma distribution. It might be useful, e.g., for modeling insurance claims severity, or for any outcome that might be gamma-distributed.
+ `reg:gamma`: gamma regression with log-link. Output is a mean of gamma distribution. It might be useful, e.g., for modeling insurance claims severity, or for any outcome that might be gamma-distributed.
 
-  `reg:tweedie`: Tweedie regression with log-link. It might be useful, e.g., for modeling total loss in insurance, or for any outcome that might be Tweedie-distributed.
+ `reg:tweedie`: Tweedie regression with log-link. It might be useful, e.g., for modeling total loss in insurance, or for any outcome that might be Tweedie-distributed.
 
   __base_score__ [default=0.5]
   
@@ -353,38 +353,38 @@
 
   The choices are listed below:
     
-    `rmse`: root mean square error (regression)
+  `rmse`: root mean square error (regression)
 
-    `mae`: mean absolute error
+  `mae`: mean absolute error
 
-    `logloss`: negative log-likelihood
+  `logloss`: negative log-likelihood
 
-    `error`: _Binary classification_ error rate. It is calculated as #(wrong cases)/#(all cases). For the predictions, the evaluation will regard the instances with prediction value larger than 0.5 as positive instances, and the others as negative instances.
+  `error`: _Binary classification_ error rate. It is calculated as #(wrong cases)/#(all cases). For the predictions, the evaluation will regard the instances with prediction value larger than 0.5 as positive instances, and the others as negative instances.
 
-    `error@t`: a different than 0.5 _binary classification_ threshold value could be specified by providing a numerical value through ‘t’.
+  `error@t`: a different than 0.5 _binary classification_ threshold value could be specified by providing a numerical value through ‘t’.
 
-    `merror`: _Multiclass classification_ error rate. It is calculated as #(wrong cases)/#(all cases).
+  `merror`: _Multiclass classification_ error rate. It is calculated as #(wrong cases)/#(all cases).
     
-    `mlogloss`: Multiclass logloss.
+  `mlogloss`: Multiclass logloss.
 
-    `auc`: Area under the curve
+  `auc`: Area under the curve
 
-    `ndcg`: Normalized Discounted Cumulative Gain
+  `ndcg`: Normalized Discounted Cumulative Gain
 
-    `map`: Mean average precision
+  `map`: Mean average precision
 
-    `ndcg@n`, `map@n`: ‘n’ can be assigned as an integer to cut off the top positions in the lists for evaluation.
+  `ndcg@n`, `map@n`: ‘n’ can be assigned as an integer to cut off the top positions in the lists for evaluation.
     
-    `ndcg-`, `map-`, `ndcg@n-`, `map@n-`: In XGBoost, `NDCG` and `MAP` will evaluate the score of a list without any positive samples as 1. By adding “-” in the evaluation metric XGBoost will evaluate these score as 0 to be consistent under some conditions.
+  `ndcg-`, `map-`, `ndcg@n-`, `map@n-`: In XGBoost, `NDCG` and `MAP` will evaluate the score of a list without any positive samples as 1. By adding “-” in the evaluation metric XGBoost will evaluate these score as 0 to be consistent under some conditions.
 
-    `poisson-nloglik`: negative log-likelihood for `Poisson regression`
+  `poisson-nloglik`: negative log-likelihood for `Poisson regression`
 
-    `gamma-nloglik`: negative log-likelihood for `gamma regression`
+  `gamma-nloglik`: negative log-likelihood for `gamma regression`
 
-    `cox-nloglik`: negative partial log-likelihood for `Cox proportional hazards regression`
+  `cox-nloglik`: negative partial log-likelihood for `Cox proportional hazards regression`
 
-    `gamma-deviance`: residual deviance for `gamma regression`
+  `gamma-deviance`: residual deviance for `gamma regression`
 
-    `tweedie-nloglik`: negative log-likelihood for `Tweedie regression` (at a specified value of the tweedie_variance_power parameter)
+  `tweedie-nloglik`: negative log-likelihood for `Tweedie regression` (at a specified value of the tweedie_variance_power parameter)
     
     
