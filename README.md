@@ -387,4 +387,6 @@
 
   `tweedie-nloglik`: negative log-likelihood for `Tweedie regression` (at a specified value of the tweedie_variance_power parameter)
     
-    
+  __seed__ [default=0]
+  
+  Random number seed.    
