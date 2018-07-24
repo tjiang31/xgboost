@@ -184,10 +184,34 @@
 
   approx: Approximate greedy algorithm using quantile sketch and gradient histogram.
 
-  hist: Fast histogram optimized approximate greedy algorithm. It uses some performance improvements such as bins caching.
+  [hist](https://medium.com/data-design/xgboosts-new-fast-histogram-tree-method-hist-a3c08f36234c): Fast histogram optimized approximate greedy algorithm. It uses some performance improvements such as bins caching.
 
   gpu_exact: GPU implementation of exact algorithm.
 
   gpu_hist: GPU implementation of hist algorithm.
   
-  ·should set to 'auto'·  
+  `should set to 'auto'`
+  
+  __sketch_eps__ [default=0.03]
+  
+  Only used for tree_method=approx.
+  
+  This roughly translates into O(1 / sketch_eps) number of bins. Compared to directly select number of bins, this comes with theoretical guarantee with sketch accuracy.
+
+  `Usually user does not have to tune this`. But consider setting to a lower number for more accurate enumeration of split candidates.
+  
+  range: (0, 1)
+
+  __scale_pos_weight__ [default=1]
+  
+  Control the balance of positive and negative weights, useful for unbalanced classes. A typical value to consider: `sum(negative instances) / sum(positive instances)`. 
+  
+  For common cases such as ads clickthrough log, the dataset is extremely imbalanced. This can affect the training of XGBoost model, and there are two ways to improve it. 
+  
+  If you care only about the overall performance metric (AUC) of your prediction:
+  
+    Balance the positive and negative weights via __scale_pos_weight__.
+
+    Use AUC for evaluation.
+    
+  
