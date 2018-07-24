@@ -173,8 +173,11 @@
   Choices: auto, exact, approx, hist, gpu_exact, gpu_hist
   
   auto: Use heuristic to choose the fastest method.
+  
         * For small to medium dataset, exact greedy (exact) will be used.
+  
         * For very large dataset, approximate algorithm (approx) will be chosen.
+        
         * Because old behavior is always use exact greedy in single machine, user will get a message when approximate algorithm is chosen to notify this choice.
 
   exact: Exact greedy algorithm.
