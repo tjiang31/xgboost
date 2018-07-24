@@ -164,3 +164,27 @@
   
   In general, set __alpha__ = 0, and only tune __lambda__ in tree model.
   
+  __tree_method__ [default= auto]
+  
+  The tree construction algorithm used in XGBoost. See description in the reference paper.
+
+  Distributed and external memory version only support tree_method=approx.
+
+  Choices: auto, exact, approx, hist, gpu_exact, gpu_hist
+  
+  auto: Use heuristic to choose the fastest method.
+        * For small to medium dataset, exact greedy (exact) will be used.
+        * For very large dataset, approximate algorithm (approx) will be chosen.
+        * Because old behavior is always use exact greedy in single machine, user will get a message when approximate algorithm is chosen to notify this choice.
+
+  exact: Exact greedy algorithm.
+
+  approx: Approximate greedy algorithm using quantile sketch and gradient histogram.
+
+  hist: Fast histogram optimized approximate greedy algorithm. It uses some performance improvements such as bins caching.
+
+  gpu_exact: GPU implementation of exact algorithm.
+
+  gpu_hist: GPU implementation of hist algorithm.
+  
+  
