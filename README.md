@@ -57,7 +57,7 @@
     
   __gamma__ [default=0, alias: min_split_loss]
   
-  Minimum loss reduction required to make a further partition on a leaf node of the tree. 
+  &gamma; Minimum loss reduction required to make a further partition on a leaf node of the tree. 
     
   A node is split only when the resulting split gives a positive reduction in the loss function. Gamma specifies the minimum loss reduction required to make a split.
 
