@@ -215,3 +215,24 @@
   --Use AUC for evaluation.
     
   
+  __updater__ [default= grow_colmaker,prune]
+  
+  A comma separated string defining the sequence of tree updaters to run, providing a modular way to construct and to modify the trees. This is an advanced parameter that is usually set automatically, depending on some other parameters. However, it could be also set explicitly by a user. The following updater plugins exist:
+
+  `grow_colmaker`: non-distributed column-based construction of trees.
+
+  `distcol`: distributed tree construction with column-based data splitting mode.
+
+  `grow_histmaker`: distributed tree construction with row-based data splitting based on global proposal of histogram counting.
+
+  `grow_local_histmaker`: based on local histogram counting.
+
+  `grow_skmaker`: uses the approximate sketching algorithm.
+
+  `sync`: synchronizes trees in all distributed nodes.
+  
+  `refresh`: refreshes tree’s statistics and/or leaf values based on the current data. Note that no random subsampling of data rows is performed.
+
+  `prune`: prunes the splits where loss < min_split_loss (or gamma).
+
+  In a distributed setting, the implicit updater sequence value would be adjusted to `grow_histmaker,prune`.
